@@ -9,8 +9,8 @@ jobs:
         - name: checkout
           uses: actions/checkout@v4
 
-        - name: display current dir
+        - name: List repo files
           run: ls -ltra
-
-        - name: echo message
-          run: echo "Above is the current dir contents"
+          
+        - name: Execute shell script
+          run: ./generate-ascii.sh
