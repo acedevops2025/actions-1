@@ -3,7 +3,7 @@ name: my Second workflow
 on: push
 
 jobs:
-    first_job:
+    build_job:
         runs-on: ubuntu-latest
         steps:
         - name: checkout
@@ -19,3 +19,23 @@ jobs:
           run: |
             chmod +x generate-ascii.sh
             ./generate-ascii.sh
+
+        - name: Sleep for 20 seconds
+          run: sleep 20
+
+    test_job:
+        needs: build_job
+        runs-on: ubuntu-latest
+        steps:
+        - name: Test file exists
+          run: grep -i "dragon" dragon.txt
+
+    deploy_job:
+        needs: [build_job, test_job]
+        runs-on: ubuntu-latest
+        steps:
+        - name: Read file
+          run: cat dragon.txt
+    
+
+
