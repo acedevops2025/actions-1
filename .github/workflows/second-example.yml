@@ -12,6 +12,9 @@ jobs:
         - name: List repo files
           run: ls -ltra
 
+        - name: whoami
+          run: whoami
+
         - name: Execute shell script
           run: |
             chmod +x generate-ascii.sh
