@@ -1,0 +1,16 @@
+name: my Second workflow
+
+on: push
+
+jobs:
+    first_job:
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout
+          uses: actions/checkout@v4
+
+        - name: display current dir
+          run: ls -ltr
+
+        - name: echo message
+          run: echo "Above is the current dir contents"
