@@ -10,7 +10,7 @@ jobs:
           uses: actions/checkout@v4
 
         - name: display current dir
-          run: ls -ltr
+          run: ls -ltra
 
         - name: echo message
           run: echo "Above is the current dir contents"
