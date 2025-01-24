@@ -1,0 +1,27 @@
+name: Docker Login & Publish
+
+on: push
+
+env:
+   CONTAINER_REGISTRY: docker.io
+   IMAGE_NAME: github-actons/nginx
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: docker login
+      run: echo docker login --user-name=${{ vars.DOCKER_USERNAME }} --password={{ secrets.DOCKER_PASSWORD }}
+
+    - name: docker build
+      run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+
+    - name: docker publish
+      run: echo docker push ${{ env.CONTAINER_REGISTRY }}/${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+
+  docker-deploy:
+    needs: docker-build
+    runs-on: ubuntu-latest
+    steps:
+    - name: docker deploy
+      run: echo docker deploy under way
